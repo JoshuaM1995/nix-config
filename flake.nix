@@ -126,6 +126,9 @@
             # Zsh configuration
             home.file.".zshrc".source = ./configs/zsh/.zshrc;
             
+            # Starship configuration
+            home.file.".config/starship.toml".source = ./configs/starship/starship.toml;
+            
             # Cursor configuration
             home.file."Library/Application Support/Cursor/User/settings.json".source = ./configs/cursor/cursor-settings.json;
             home.file."Library/Application Support/Cursor/User/keybindings.json".source = ./configs/cursor/cursor-keybindings.json;
