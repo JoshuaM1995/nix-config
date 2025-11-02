@@ -121,15 +121,15 @@
             programs.zsh.enable = false;
             
             # WezTerm configuration
-            home.file.".wezterm.lua".source = ./configs/.wezterm.lua;
+            home.file.".wezterm.lua".source = ./configs/wezterm/.wezterm.lua;
             
             # Zsh configuration
-            home.file.".zshrc".source = ./configs/.zshrc;
+            home.file.".zshrc".source = ./configs/zsh/.zshrc;
             
             # Cursor configuration
-            home.file."Library/Application Support/Cursor/User/settings.json".source = ./configs/cursor-settings.json;
-            home.file."Library/Application Support/Cursor/User/keybindings.json".source = ./configs/cursor-keybindings.json;
-            home.file.".cursor/mcp.json".source = ./configs/cursor-mcp.json;
+            home.file."Library/Application Support/Cursor/User/settings.json".source = ./configs/cursor/cursor-settings.json;
+            home.file."Library/Application Support/Cursor/User/keybindings.json".source = ./configs/cursor/cursor-keybindings.json;
+            home.file.".cursor/mcp.json".source = ./configs/cursor/cursor-mcp.json;
           };
         })
       ];
