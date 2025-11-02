@@ -1,19 +1,7 @@
-# Amazon Q pre block. Keep at the top of this file.
-[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
-# # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-# fi
-
 ZSH_DISABLE_COMPFIX=true
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/joshuamcnabb/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Kubectl edit command will use this env var.
 export EDITOR=nano
@@ -187,14 +175,14 @@ function slintcreate() {
 [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
 
 # pnpm
-export PNPM_HOME="/Users/joshuamcnabb/Library/pnpm"
+export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
 # bun completions
-[ -s "/Users/joshuamcnabb/.bun/_bun" ] && source "/Users/joshuamcnabb/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # Bun
-export BUN_INSTALL="/Users/joshuamcnabb/.bun"
+export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # export PATH="/opt/homebrew/opt/opencv@3/bin:$PATH"
@@ -217,7 +205,7 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 #export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Homeq
 # export JAVA_HOME="/opt/homebrew/Cellar/openjdk/23.0.1/libexec/openjdk.jdk/Contents/Home"
-export JAVA_HOME="/Users/joshuamcnabb/.sdkman/candidates/java/current/bin/java"
+export JAVA_HOME="$HOME/.sdkman/candidates/java/current/bin/java"
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
@@ -241,7 +229,7 @@ export PATH="/opt/homebrew/opt/bison/bin:$PATH"
 
 export PYTHON=$(which python3.10)
 export PATH=/opt/homebrew/opt/python@3.10/libexec/bin:$PATH
-export PATH=$PATH:/Users/joshuamcnabb/.spicetify
+export PATH=$PATH:$HOME/.spicetify
 
 export LDFLAGS="-L/opt/homebrew/opt/jpeg/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/jpeg/include"
@@ -472,7 +460,7 @@ tre() { command tre "$@" -e && source "/tmp/tre_aliases_$USER" 2>/dev/null; }
 
 export PATH="/usr/local/opt/postgresql/bin:$PATH"
 
-alias claude="/Users/joshuamcnabb/.claude/local/claude"
+alias claude="$HOME/.claude/local/claude"
 
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
 
