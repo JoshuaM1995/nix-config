@@ -75,8 +75,14 @@
           "rectangle"
           "ghostty"
           "cursor"
-          "setapp"
           "brave-browser"
+          "docker-desktop"
+          "spotify"
+          "tableplus"
+          "obsidian"
+          "cleanshot"
+          "quit-all"
+          "yaak"
         ];
         masApps = {
           "ColorSlurp" = 1287239339;
