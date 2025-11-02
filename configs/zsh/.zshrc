@@ -3,71 +3,8 @@ ZSH_DISABLE_COMPFIX=true
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# Kubectl edit command will use this env var.
 export EDITOR=nano
-# Should your editor deals with streamed vs on disk files differently, also set...
 export K9S_EDITOR=nano
-
-# export NODE_ENV=dev
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-# ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
@@ -89,28 +26,12 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+# Custom plugin manager
 [[ -r ~/zsh-plugins/znap/znap.zsh ]] ||
     git clone --depth 1 -- \
         https://github.com/marlonrichert/zsh-snap.git ~/zsh-plugins/znap
 
 source ~/zsh-plugins/znap/znap.zsh  # Start Znap
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -163,13 +84,6 @@ function slintcreate() {
   cargo generate --git https://github.com/slint-ui/slint-rust-template --name $1
 }
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 # tabtab source for packages
 # uninstall by removing these lines
 [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
@@ -177,58 +91,16 @@ function slintcreate() {
 # pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
-# pnpm end
-# bun completions
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
-
-# Bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-# export PATH="/opt/homebrew/opt/opencv@3/bin:$PATH"
-
-# OpenCV
-# export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/opt/homebrew/Cellar/opencv/4.7.0_1/lib/pkgconfig
-# export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/homebrew/Cellar/opencv/4.7.0_1/lib
-# export CXXFLAGS="--std=c++17"export PYENV_ROOT="$HOME/.pyenv"
-# export PATH="$PYENV_ROOT/bin:$PATH"
-# eval "$(pyenv init -)"
-
-# Stripe autocompletion
-fpath=(~/.stripe $fpath)
-autoload -Uz compinit && compinit -i
-
-# Android
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-
-#export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Homeq
-# export JAVA_HOME="/opt/homebrew/Cellar/openjdk/23.0.1/libexec/openjdk.jdk/Contents/Home"
-export JAVA_HOME="$HOME/.sdkman/candidates/java/current/bin/java"
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"                                       # This loads nvm
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 
-alias copilot="gh copilot"
-alias copilot="gh copilot"
-alias copilot="gh copilot"
-alias copilot="gh copilot"
-alias copilot="gh copilot"
-alias copilot="gh copilot"
-alias copilot="gh copilot"
-alias copilot="gh copilot"
-alias copilot="gh copilot"
-export PATH="/opt/homebrew/opt/bison/bin:$PATH"
-
-# tabtab source for electron-forge package
-# uninstall by removing these lines or running `tabtab uninstall electron-forge`
-[[ -f /opt/homebrew/lib/node_modules/electron-forge/node_modules/tabtab/.completions/electron-forge.zsh ]] && . /opt/homebrew/lib/node_modules/electron-forge/node_modules/tabtab/.completions/electron-forge.zsh
-
 export PYTHON=$(which python3.10)
 export PATH=/opt/homebrew/opt/python@3.10/libexec/bin:$PATH
+
+# Spicetify
 export PATH=$PATH:$HOME/.spicetify
 
 export LDFLAGS="-L/opt/homebrew/opt/jpeg/lib"
