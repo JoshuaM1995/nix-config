@@ -88,6 +88,9 @@
       # Shell configuration
       programs.zsh.enable = true;
 
+      # Ensure Nix packages are in PATH for use in .zshrc
+      environment.pathsToLink = [ "/share/zsh" ];
+
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
 
@@ -114,8 +117,14 @@
             home.homeDirectory = lib.mkForce "/Users/joshuamcnabb";
             home.stateVersion = "25.05";
             
+            # Zsh configuration
+            programs.zsh.enable = false;
+            
             # WezTerm configuration
-            home.file.".wezterm.lua".source = ./wezterm.lua;
+            home.file.".wezterm.lua".source = ./configs/.wezterm.lua;
+            
+            # Zsh configuration
+            home.file.".zshrc".source = ./configs/.zshrc;
           };
         })
       ];
