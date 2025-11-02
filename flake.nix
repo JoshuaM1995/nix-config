@@ -109,6 +109,7 @@
         ({ pkgs, lib, ... }: {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.backupFileExtension = "backup";
           home-manager.users.joshuamcnabb = {
             home.homeDirectory = lib.mkForce "/Users/joshuamcnabb";
             home.stateVersion = "25.05";
