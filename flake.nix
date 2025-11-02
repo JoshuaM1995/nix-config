@@ -56,6 +56,7 @@
         dock.minimize-to-application = true;
         dock.mineffect = "genie";
         dock.show-recents = false;
+        dock.mru-spaces = false;
         
         # Finder settings
         finder.FXPreferredViewStyle = "clmv";  # List view (Nlsv = List, clmv = Column, Flwv = Flow)
@@ -72,6 +73,14 @@
 
         # Menu Settings
         menuExtraClock.ShowSeconds = true;
+
+        # Spaces settings
+        spaces.spans-displays = true;
+      };
+
+      # Startup settings
+      system.startup = {
+        chime = false;
       };
 
       # Homebrew integration for GUI apps
