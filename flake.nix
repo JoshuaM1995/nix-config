@@ -13,17 +13,65 @@
       # Disable nix-darwin's Nix management (Determinate handles it)
       nix.enable = false;
 
-      # List packages installed in system profile. To search by name, run:
-      # $ nix-env -qaP | grep wget
-      environment.systemPackages =
-        [ pkgs.vim
+      # CLI tools installed via Nix
+      # Note: Flakes are enabled by default in Determinate, no need to set experimental-features
+      environment.systemPackages = with pkgs; [
+        # Editors & tools
+        bat
+        eza
+        fd
+        fzf
+        
+        # Git tools
+        git
+        git-lfs
+        gh
+        
+        # Shell enhancements
+        starship
+        atuin
+        zoxide
+        direnv
+        
+        # System utilities
+        wget
+        
+        # Development tools
+        nodejs
+        kubernetes-cli
+        # Add more tools as needed
+      ];
+
+      # macOS System Preferences
+      system.defaults = {
+        # Dock settings
+        dock.autohide = true;
+        dock.orientation = "bottom";
+        
+        # Trackpad settings
+        trackpad.Clicking = true;
+        
+        NSGlobalDomain.KeyRepeat = 2;
+        # NSGlobalDomain.InitialKeyRepeat = 15;  # Uncomment and adjust if needed
+      };
+
+      # Homebrew integration for GUI apps
+      homebrew = {
+        enable = true;
+        casks = [
+          "alacritty"
+          "bitwarden"
+          "ghostty"
+          "wezterm"
         ];
+        # Optional: clean up apps not in the list
+        # onActivation = {
+        #   cleanup = "zap";  # Remove apps not listed above
+        # };
+      };
 
-      # Necessary for using flakes on this system.
-      nix.settings.experimental-features = "nix-command flakes";
-
-      # Enable alternative shell support in nix-darwin.
-      # programs.fish.enable = true;
+      # Shell configuration
+      programs.zsh.enable = true;
 
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
