@@ -1,16 +1,5 @@
 {
   "mcpServers": {
-    "peekaboo": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@steipete/peekaboo-mcp"
-      ],
-      "env": {
-        "PEEKABOO_AI_PROVIDERS": "openai/gpt-4o",
-        "OPENAI_API_KEY": "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"
-      }
-    },
     "browsertools": {
       "command": "npx",
       "args": [
@@ -52,21 +41,6 @@
     },
     "context7": {
       "url": "https://mcp.context7.com/mcp"
-    },
-    "postgres": {
-      "command": "docker",
-      "args": [
-        "run",
-        "-i",
-        "--rm",
-        "-e",
-        "DATABASE_URI",
-        "crystaldba/postgres-mcp",
-        "--access-mode=unrestricted"
-      ],
-      "env": {
-        "DATABASE_URI": "postgresql://earthdrilling_service:test@localhost:54331/earth_drilling"
-      }
     },
     "next-devtools": {
       "command": "npx",
