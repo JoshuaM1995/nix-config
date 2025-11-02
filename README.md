@@ -22,6 +22,7 @@ sudo darwin-rebuild switch
 
 ```bash
 nix flake update
+sudo darwin-rebuild switch
 ```
 
 ## Setting Up Cursor
