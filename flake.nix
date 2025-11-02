@@ -133,6 +133,17 @@
             home.file."Library/Application Support/Cursor/User/settings.json".source = ./configs/cursor/cursor-settings.json;
             home.file."Library/Application Support/Cursor/User/keybindings.json".source = ./configs/cursor/cursor-keybindings.json;
             home.file.".cursor/mcp.json".source = ./configs/cursor/cursor-mcp.json;
+
+            # Bat configuration
+            home.file.".config/bat/Catppuccin Mocha.tmTheme".source = ./configs/bat/Catppuccin Mocha.tmTheme;
+            home.file.".config/bat/themes/catppuccin-mocha.tmTheme".source = ./configs/bat/themes/catppuccin-mocha.tmTheme;
+
+            # Git configuration
+            home.file.".config/git/ignore".source = ./configs/git/ignore;
+
+            # GitHub CLI configuration
+            home.file.".config/gh/config.yml".source = ./configs/gh/config.yml;
+            home.file.".config/gh/hosts.yml".source = ./configs/gh/hosts.yml;
           };
         })
       ];
