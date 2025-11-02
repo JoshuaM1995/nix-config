@@ -51,11 +51,13 @@
         dock.autohide = true;
         dock.orientation = "bottom";
         dock.tilesize = 64;
+        dock.largesize = 110;
         dock.magnification = true;
         dock."minimize-to-application" = true;
+        dock.mineffect = "genie";
         
         # Finder settings
-        finder.FXPreferredViewStyle = "Nlsv";  # List view (Nlsv = List, clmv = Column, Flwv = Flow)
+        finder.FXPreferredViewStyle = "clmv";  # List view (Nlsv = List, clmv = Column, Flwv = Flow)
         
         # Trackpad settings
         trackpad.Clicking = true;
@@ -66,6 +68,9 @@
         NSGlobalDomain.InitialKeyRepeat = 25;
         NSGlobalDomain.AppleShowScrollBars = "WhenScrolling";
         NSGlobalDomain.AppleInterfaceStyle = "Dark";
+
+        # Menu Settings
+        menuExtraClock.ShowSeconds = true;
       };
 
       # Homebrew integration for GUI apps
