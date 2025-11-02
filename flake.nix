@@ -50,12 +50,22 @@
         # Dock settings
         dock.autohide = true;
         dock.orientation = "bottom";
+        dock.tilesize = 64;
+        dock.magnification = true;
+        dock."minimize-to-application" = true;
+        
+        # Finder settings
+        finder.FXPreferredViewStyle = "Nlsv";  # List view (Nlsv = List, clmv = Column, Flwv = Flow)
         
         # Trackpad settings
         trackpad.Clicking = true;
+        trackpad.TrackpadThreeFingerDrag = true;
         
+        # Global domain settings (NSGlobalDomain)
         NSGlobalDomain.KeyRepeat = 2;
-        # NSGlobalDomain.InitialKeyRepeat = 15;  # Uncomment and adjust if needed
+        NSGlobalDomain.InitialKeyRepeat = 25;
+        NSGlobalDomain.AppleShowScrollBars = "WhenScrolling";
+        NSGlobalDomain.AppleInterfaceStyle = "Dark";
       };
 
       # Homebrew integration for GUI apps
