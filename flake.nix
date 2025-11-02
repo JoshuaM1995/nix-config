@@ -129,7 +129,10 @@
 
             # Bat configuration
             home.file.".config/bat/Catppuccin Mocha.tmTheme".source = ./. + "/configs/bat/Catppuccin Mocha.tmTheme";
-            home.file.".config/bat/themes/catppuccin-mocha.tmTheme".source = ./configs/bat/themes/catppuccin-mocha.tmTheme;
+            home.file.".config/bat/themes" = {
+              source = ./configs/bat/themes;
+              recursive = true;
+            };
 
             # Git configuration
             home.file.".config/git/ignore".source = ./configs/git/ignore;
@@ -137,6 +140,13 @@
             # GitHub CLI configuration
             home.file.".config/gh/config.yml".source = ./configs/gh/config.yml;
             home.file.".config/gh/hosts.yml".source = ./configs/gh/hosts.yml;
+
+            # Ghostty configuration
+            home.file.".config/ghostty/config".source = ./configs/ghostty/config;
+            home.file.".config/ghostty/themes" = {
+              source = ./configs/ghostty/themes;
+              recursive = true;
+            };
           };
         })
       ];
