@@ -87,10 +87,11 @@
         masApps = {
           "ColorSlurp" = 1287239339;
         };
-        # Optional: clean up apps not in the list
-        # onActivation = {
-        #   cleanup = "zap";  # Remove apps not listed above
-        # };
+        onActivation = {
+          autoUpdate = true;
+          upgrade = true;
+          # cleanup = "zap"; # This removes the apps not in the list
+        };
       };
 
       # Shell configuration
