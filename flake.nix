@@ -39,7 +39,6 @@
         wget
         # Development tools
         nodejs
-        nvm
         kubectl
         starship
       ];
@@ -130,7 +129,7 @@
             home.file.".cursor/mcp.json".source = ./configs/cursor/cursor-mcp.json;
 
             # Bat configuration
-            home.file.".config/bat/Catppuccin Mocha.tmTheme".source = ./configs/bat/Catppuccin Mocha.tmTheme;
+            home.file.".config/bat/Catppuccin Mocha.tmTheme".source = ./. + "/configs/bat/Catppuccin Mocha.tmTheme";
             home.file.".config/bat/themes/catppuccin-mocha.tmTheme".source = ./configs/bat/themes/catppuccin-mocha.tmTheme;
 
             # Git configuration
