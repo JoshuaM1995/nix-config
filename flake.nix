@@ -11,7 +11,7 @@
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager }:
   let
-    configuration = { pkgs, ... }: {
+    configuration = { pkgs, config, ... }: {
       # Disable nix-darwin's Nix management (Determinate handles it)
       nix.enable = false;
 
@@ -21,6 +21,8 @@
       # CLI tools installed via Nix
       # Note: Flakes are enabled by default in Determinate, no need to set experimental-features
       environment.systemPackages = with pkgs; [
+        # Build-in packages
+        pkgs.mkalias
         # Editors & tools
         bat
         eza
@@ -109,7 +111,28 @@
 
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
-    };
+
+      # Fix issue with Applications not showing up in MacOS Spotlight
+      system.activationScripts.applications.text = let
+        env = pkgs.buildEnv {
+          name = "system-applications";
+          paths = config.environment.systemPackages;
+          pathsToLink = "/Applications";
+        };
+      in
+        pkgs.lib.mkForce ''
+        # Set up applications.
+        echo "setting up /Applications..." >&2
+        rm -rf /Applications/Nix\ Apps
+        mkdir -p /Applications/Nix\ Apps
+        find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
+        while read -r src; do
+          app_name=$(basename "$src")
+          echo "copying $src" >&2
+          ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
+        done
+            '';
+          };
   in
   {
     # Build darwin flake using:
