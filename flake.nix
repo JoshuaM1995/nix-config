@@ -72,6 +72,11 @@
         casks = [
           "bitwarden"
           "wezterm"
+          "rectangle"
+          "ghostty"
+          "cursor"
+          "setapp"
+          "brave-browser"
         ];
         # Optional: clean up apps not in the list
         # onActivation = {
