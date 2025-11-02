@@ -39,7 +39,9 @@
         wget
         # Development tools
         nodejs
+        nvm
         kubectl
+        starship
       ];
 
       # macOS System Preferences
@@ -69,9 +71,7 @@
       homebrew = {
         enable = true;
         casks = [
-          "alacritty"
           "bitwarden"
-          "ghostty"
           "wezterm"
         ];
         # Optional: clean up apps not in the list
