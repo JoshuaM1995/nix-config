@@ -17,3 +17,7 @@ sudo nix run nix-darwin/nix-darwin-25.05#darwin-rebuild -- switch
 ```bash
 sudo darwin-rebuild switch
 ```
+
+## Setting Up Cursor
+
+Import the `cursor.code-profile` file in Cursor by going to **Settings** -> **Profiles** -> **New Profile (Import)** and selecting the file.
