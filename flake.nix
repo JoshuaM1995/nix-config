@@ -40,6 +40,7 @@
         # Development tools
         nodejs
         kubectl
+        pnpm
       ];
 
       # macOS System Preferences
