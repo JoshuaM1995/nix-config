@@ -1,0 +1,266 @@
+{
+  "[csharp]": {
+    "editor.defaultFormatter": "ms-dotnettools.csharp"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[dockerfile]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[handlebars]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[lua]": {
+    "editor.defaultFormatter": "yinfei.luahelper"
+  },
+  "[python]": {
+    "editor.formatOnType": true
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "cSpell.userWords": [
+    "bodyparser",
+    "catppuccin",
+    "chakra",
+    "ellipsize",
+    "Formik",
+    "hookform",
+    "nestjs",
+    "Pressable",
+    "Quickbooks",
+    "supabase",
+    "Swashbuckle",
+    "tanstack",
+    "timestamptz",
+    "torchvision",
+    "uuidv"
+  ],
+  "cursor.cpp.disabledLanguages": [
+    "markdown",
+    "scminput"
+  ],
+  "diffEditor.renderSideBySide": false,
+  "dotenv.enableAutocloaking": false,
+  "dotnet-test-explorer.autoWatch": true,
+  "dotnet-test-explorer.testArguments": "/p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutput=../../lcov.info",
+  "dotnet-test-explorer.testProjectPath": "\"**/*Tests.csproj\"",
+  "dotnet.enableTelemetry": false,
+  "dotnetAcquisitionExtension.enableTelemetry": false,
+  "editor.accessibilitySupport": "off",
+  "editor.fontFamily": "FiraCode Nerd Font",
+  "editor.formatOnSave": true,
+  "editor.inlineSuggest.enabled": true,
+  "editor.minimap.enabled": false,
+  "editor.tabSize": 2,
+  "editor.tokenColorCustomizations": {
+    "textMateRules": []
+  },
+  "emmet.showExpandedAbbreviation": "inMarkupAndStylesheetFilesOnly",
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "vue"
+  ],
+  "explorer.confirmDragAndDrop": false,
+  "files.associations": {
+    ".fantomasignore": "ignore",
+    ".env*": "dotenv",
+    "string": "cpp",
+    "iostream": "cpp",
+    "vector": "cpp",
+    "__bit_reference": "cpp",
+    "__hash_table": "cpp",
+    "__locale": "cpp",
+    "__node_handle": "cpp",
+    "__split_buffer": "cpp",
+    "__threading_support": "cpp",
+    "__verbose_abort": "cpp",
+    "array": "cpp",
+    "bitset": "cpp",
+    "cctype": "cpp",
+    "clocale": "cpp",
+    "cmath": "cpp",
+    "complex": "cpp",
+    "cstdarg": "cpp",
+    "cstddef": "cpp",
+    "cstdint": "cpp",
+    "cstdio": "cpp",
+    "cstdlib": "cpp",
+    "cstring": "cpp",
+    "ctime": "cpp",
+    "cwchar": "cpp",
+    "cwctype": "cpp",
+    "deque": "cpp",
+    "execution": "cpp",
+    "memory": "cpp",
+    "initializer_list": "cpp",
+    "ios": "cpp",
+    "iosfwd": "cpp",
+    "istream": "cpp",
+    "limits": "cpp",
+    "locale": "cpp",
+    "mutex": "cpp",
+    "new": "cpp",
+    "optional": "cpp",
+    "ostream": "cpp",
+    "print": "cpp",
+    "queue": "cpp",
+    "ratio": "cpp",
+    "sstream": "cpp",
+    "stack": "cpp",
+    "stdexcept": "cpp",
+    "streambuf": "cpp",
+    "string_view": "cpp",
+    "tuple": "cpp",
+    "typeinfo": "cpp",
+    "unordered_map": "cpp",
+    "variant": "cpp",
+    "algorithm": "cpp",
+    "*.overrides": "less",
+    "*.variables": "less"
+  },
+  "files.eol": "\n",
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  "github.copilot.chat.runCommand.enabled": false,
+  "github.copilot.editor.enableCodeActions": false,
+  "github.copilot.enable": {
+    "*": true,
+    "markdown": false,
+    "plaintext": true,
+    "scminput": false,
+    "yaml": true
+  },
+  "github.copilot.renameSuggestions.triggerAutomatically": false,
+  "githubPullRequests.pullBranch": "never",
+  "githubPullRequests.pullRequestDescription": "Copilot",
+  "gitlens.ai.experimental.model": "openai:gpt-4o",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "liveServer.settings.donotShowInfoMsg": true,
+  "prisma.showPrismaDataPlatformNotification": false,
+  "redhat.telemetry.enabled": false,
+  "security.promptForLocalFileProtocolHandling": false,
+  "security.workspace.trust.untrustedFiles": "open",
+  "supermaven.allowGitignore": true,
+  "supermaven.enable": {
+    "*": false
+  },
+  "svelte.enable-ts-plugin": true,
+  "svg.preview.mode": "svg",
+  "terminal.external.osxExec": "Warp.app",
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.cursorStyle": "line",
+  "terminal.integrated.env.osx": {
+    "FIG_NEW_SESSION": "1",
+    "Q_NEW_SESSION": "1"
+  },
+  "terminal.integrated.fontFamily": "FiraCode Nerd Font",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "workbench.activityBar.orientation": "vertical",
+  "workbench.colorTheme": "Catppuccin Mocha",
+  "workbench.editor.enablePreview": false,
+  "workbench.iconTheme": "catppuccin-mocha",
+  "workbench.preferredDarkColorTheme": "Catppuccin Mocha",
+  "workbench.productIconTheme": "fluent-icons",
+  "yaml.customTags": [
+    "!And",
+    "!And sequence",
+    "!If",
+    "!If sequence",
+    "!Not",
+    "!Not sequence",
+    "!Equals",
+    "!Equals sequence",
+    "!Or",
+    "!Or sequence",
+    "!FindInMap",
+    "!FindInMap sequence",
+    "!Base64",
+    "!Join",
+    "!Join sequence",
+    "!Cidr",
+    "!Ref",
+    "!Sub",
+    "!Sub sequence",
+    "!GetAtt",
+    "!GetAZs",
+    "!ImportValue",
+    "!ImportValue sequence",
+    "!Select",
+    "!Select sequence",
+    "!Split",
+    "!Split sequence"
+  ],
+  "workbench.preferredHighContrastColorTheme": "Catppuccin Mocha",
+  "workbench.preferredHighContrastLightColorTheme": "Catppuccin Latte",
+  "workbench.preferredLightColorTheme": "Catppuccin Latte",
+  "terminal.integrated.scrollback": 10000,
+  "yaml.format.bracketSpacing": false,
+  "todohighlight.keywords": [
+    "NOTE"
+  ],
+  "update.releaseTrack": "prerelease",
+  "[less]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "window.confirmBeforeClose": "keyboardOnly",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[dotenv]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[properties]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "cursorUsage.teamId": "",
+  "cursorUsage.pollMinutes": 5,
+  "cursorStats.currency": "CAD",
+  "cursorStats.progressBarCriticalThreshold": 80,
+  "cursorStats.showDailyRemaining": true,
+  "cursor.composer.shouldQueueWhenGenerating": false,
+  "remote.SSH.remotePlatform": {
+    "unraid": "linux",
+    "hetzner-portfolio": "linux",
+    "hetzner-coolify": "linux"
+  },
+  "cursor.composer.queueMessageDefaultBehavior": "queue",
+  "cursor.composer.usageSummaryDisplay": "always",
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "explorer.confirmPasteNative": false
+}

@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "browsertools": {
+      "command": "npx",
+      "args": ["-y", "@agentdeskai/browser-tools-mcp"]
+    },
+    "wezterm-mcp": {
+      "command": "npx",
+      "args": ["-y", "wezterm-mcp"]
+    },
+    "context7": {
+      "url": "https://mcp.context7.com/mcp"
+    },
+    "next-devtools": {
+      "command": "npx",
+      "args": ["-y", "next-devtools-mcp@latest"]
+    }
+  }
+}

@@ -125,6 +125,11 @@
             
             # Zsh configuration
             home.file.".zshrc".source = ./configs/.zshrc;
+            
+            # Cursor configuration
+            home.file."Library/Application Support/Cursor/User/cursor.code-profile".source = ./configs/cursor.code-profile;
+            home.file."Library/Application Support/Cursor/User/settings.json".source = ./configs/cursor-settings.json;
+            home.file."Library/Application Support/Cursor/User/keybindings.json".source = ./configs/cursor-keybindings.json;
           };
         })
       ];
