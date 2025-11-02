@@ -18,6 +18,12 @@ sudo nix run nix-darwin/nix-darwin-25.05#darwin-rebuild -- switch
 sudo darwin-rebuild switch
 ```
 
+### Updating Managed Apps/Packages
+
+```bash
+nix flake update
+```
+
 ## Setting Up Cursor
 
 Import the `cursor.code-profile` file in Cursor by going to **Settings** -> **Profiles** -> **New Profile (Import)** and selecting the file.
