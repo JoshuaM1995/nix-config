@@ -13,6 +13,9 @@
       # Disable nix-darwin's Nix management (Determinate handles it)
       nix.enable = false;
 
+      # Set primary user (required for user-specific options)
+      system.primaryUser = "joshuamcnabb";
+
       # CLI tools installed via Nix
       # Note: Flakes are enabled by default in Determinate, no need to set experimental-features
       environment.systemPackages = with pkgs; [
@@ -38,7 +41,7 @@
         
         # Development tools
         nodejs
-        kubernetes-cli
+        kubectl
         # Add more tools as needed
       ];
 
