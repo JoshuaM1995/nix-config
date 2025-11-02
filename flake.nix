@@ -40,7 +40,6 @@
         # Development tools
         nodejs
         kubectl
-        starship
       ];
 
       # macOS System Preferences
