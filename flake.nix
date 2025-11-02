@@ -26,25 +26,20 @@
         eza
         fd
         fzf
-        
         # Git tools
         git
         git-lfs
         gh
-        
         # Shell enhancements
         starship
         atuin
         zoxide
         direnv
-        
         # System utilities
         wget
-        
         # Development tools
         nodejs
         kubectl
-        # Add more tools as needed
       ];
 
       # macOS System Preferences
