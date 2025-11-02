@@ -129,6 +129,7 @@
             # Cursor configuration
             home.file."Library/Application Support/Cursor/User/settings.json".source = ./configs/cursor-settings.json;
             home.file."Library/Application Support/Cursor/User/keybindings.json".source = ./configs/cursor-keybindings.json;
+            home.file.".cursor/mcp.json".source = ./configs/cursor-mcp.json;
           };
         })
       ];
