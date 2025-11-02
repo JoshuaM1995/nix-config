@@ -53,8 +53,9 @@
         dock.tilesize = 64;
         dock.largesize = 110;
         dock.magnification = true;
-        dock."minimize-to-application" = true;
+        dock.minimize-to-application = true;
         dock.mineffect = "genie";
+        dock.show-recents = false;
         
         # Finder settings
         finder.FXPreferredViewStyle = "clmv";  # List view (Nlsv = List, clmv = Column, Flwv = Flow)
