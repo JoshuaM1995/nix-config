@@ -127,6 +127,18 @@
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
 
+      # Fix .zshrc permissions (should be 644, not 755)
+      system.activationScripts.fixZshrcPermissions.text = ''
+        echo "fixing .zshrc permissions..." >&2
+        chmod 644 /Users/joshuamcnabb/.zshrc 2>/dev/null || true
+      '';
+
+      # Rebuild bat cache to ensure themes are loaded
+      system.activationScripts.rebuildBatCache.text = ''
+        echo "rebuilding bat cache..." >&2
+        ${pkgs.bat}/bin/bat cache --build 2>/dev/null || true
+      '';
+
       # Fix issue with Applications not showing up in MacOS Spotlight
       system.activationScripts.applications.text = let
         env = pkgs.buildEnv {
@@ -182,7 +194,8 @@
             home.file.".cursor/mcp.json".source = ./configs/cursor/cursor-mcp.json;
 
             # Bat configuration
-            home.file.".config/bat/Catppuccin Mocha.tmTheme".source = ./. + "/configs/bat/Catppuccin Mocha.tmTheme";
+            home.file.".config/bat/config".source = ./configs/bat/config;
+            home.file.".config/bat/Catppuccin Mocha.tmTheme".source = ./. + "/configs/bat/themes/Catppuccin Mocha.tmTheme";
             home.file.".config/bat/themes" = {
               source = ./configs/bat/themes;
               recursive = true;

@@ -324,8 +324,6 @@ _fzf_compgen_dir() {
 # Doesn't work well with wezterm keybindings
 # source ~/fzf-git.sh/fzf-git.zsh
 
-export BAT_THEME="Catppuccin Mocha"
-
 eval "$(atuin init zsh)"
 
 tre() { command tre "$@" -e && source "/tmp/tre_aliases_$USER" 2>/dev/null; }
