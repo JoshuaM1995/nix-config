@@ -75,7 +75,7 @@
         menuExtraClock.ShowSeconds = true;
 
         # Spaces settings
-        spaces.spans-displays = true;
+        spaces.spans-displays = false;
       };
 
       # Startup settings
