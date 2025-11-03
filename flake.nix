@@ -44,6 +44,7 @@
         kubectl
         pnpm
         ripgrep
+        carapace
       ];
 
       # macOS System Preferences
@@ -91,7 +92,6 @@
           "bitwarden"
           "wezterm"
           "rectangle"
-          "ghostty"
           "cursor"
           "brave-browser"
           "docker-desktop"
@@ -208,13 +208,6 @@
             # GitHub CLI configuration
             home.file.".config/gh/config.yml".source = ./configs/gh/config.yml;
             home.file.".config/gh/hosts.yml".source = ./configs/gh/hosts.yml;
-
-            # Ghostty configuration
-            home.file.".config/ghostty/config".source = ./configs/ghostty/config;
-            home.file.".config/ghostty/themes" = {
-              source = ./configs/ghostty/themes;
-              recursive = true;
-            };
           };
         })
       ];
