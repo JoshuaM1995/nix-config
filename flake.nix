@@ -43,6 +43,7 @@
         nodejs
         kubectl
         pnpm
+        ripgrep
       ];
 
       # macOS System Preferences
