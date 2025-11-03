@@ -204,6 +204,11 @@ load-nvmrc
 alias start-qzero="cd ~/Development/qzero-monorepo && source .env.josh && p dev"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Carapace
+export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
+zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+source <(carapace _carapace)
+
 # Starship (p10k replacement)
 eval "$(starship init zsh)"
 
