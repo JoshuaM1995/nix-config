@@ -72,12 +72,13 @@
         NSGlobalDomain.InitialKeyRepeat = 25;
         NSGlobalDomain.AppleShowScrollBars = "WhenScrolling";
         NSGlobalDomain.AppleInterfaceStyle = "Dark";
+        NSGlobalDomain._HIHideMenuBar = true;
 
         # Menu Settings
         menuExtraClock.ShowSeconds = true;
 
         # Spaces settings
-        spaces.spans-displays = false;
+        spaces.spans-displays = false; # Displays have separate spaces (false = on, true = off)
       };
 
       # Startup settings
@@ -85,9 +86,13 @@
         chime = false;
       };
 
+
       # Homebrew integration for GUI apps
       homebrew = {
         enable = true;
+        taps = [
+          "FelixKratz/formulae"
+        ];
         casks = [
           "bitwarden"
           "wezterm"
@@ -111,6 +116,20 @@
           # cleanup = "zap"; # This removes the apps not in the list
         };
       };
+
+      # Install and start sketchybar service via Homebrew
+      system.activationScripts.startSketchybar.text = ''
+        if [ -f /opt/homebrew/bin/brew ]; then
+          # Tap the repository if not already tapped
+          sudo -u ${config.system.primaryUser} /opt/homebrew/bin/brew tap FelixKratz/formulae 2>/dev/null || true
+          # Install sketchybar if not already installed
+          if ! sudo -u ${config.system.primaryUser} /opt/homebrew/bin/brew list --formula sketchybar &>/dev/null; then
+            sudo -u ${config.system.primaryUser} /opt/homebrew/bin/brew install FelixKratz/formulae/sketchybar 2>/dev/null || true
+          fi
+          # Start the service
+          sudo -u ${config.system.primaryUser} /opt/homebrew/bin/brew services start sketchybar 2>/dev/null || true
+        fi
+      '';
 
       # Shell configuration
       programs.zsh.enable = true;
@@ -196,6 +215,12 @@
             # Starship configuration
             home.file.".config/starship" = {
               source = ./configs/starship;
+              recursive = true;
+            };
+            
+            # Sketchybar configuration
+            home.file.".config/sketchybar" = {
+              source = ./configs/sketchybar;
               recursive = true;
             };
             
