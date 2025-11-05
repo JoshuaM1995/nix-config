@@ -174,12 +174,26 @@
         fi
       '';
 
+      # Fix sketchybar script permissions
+      system.activationScripts.fixSketchybarPermissions.text = ''
+        echo "fixing sketchybar script permissions..." >&2
+        SKETCHYBAR_DIR="/Users/${config.system.primaryUser}/.config/sketchybar"
+        if [ -d "$SKETCHYBAR_DIR" ]; then
+          find "$SKETCHYBAR_DIR" -type f -name "*.sh" -exec chmod +x {} \; 2>/dev/null || true
+        fi
+      '';
+
       # Reload sketchybar after darwin-rebuild
       system.activationScripts.reloadSketchybar.text = ''
         echo "reloading sketchybar..." >&2
         if [ -f /opt/homebrew/bin/sketchybar ]; then
           USER_ID=$(id -u ${config.system.primaryUser})
+          # Wait a moment for permissions to be set, then reload
+          sleep 1
           launchctl asuser $USER_ID /opt/homebrew/bin/sketchybar --reload 2>/dev/null || true
+          # Give sketchybar a moment to reload, then trigger updates
+          sleep 2
+          launchctl asuser $USER_ID /opt/homebrew/bin/sketchybar --update spotify_indicator 2>/dev/null || true
         fi
       '';
 
