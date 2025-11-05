@@ -1,53 +1,11 @@
 -- Pull in the wezterm API
 local wezterm = require 'wezterm'
 
--- This will hold the configuration.
 local act = wezterm.action
 
--- This is where you actually apply your config choices
-
--- For example, changing the color scheme:
--- config.color_scheme = 'Catppuccin Mocha'
-local scheme = wezterm.color.get_builtin_schemes()["Catppuccin Mocha"]
-
--- When wezterm cli emit is implemented, uncomment this
--- wezterm.on('sol-start', function(cmd)
---     -- Create a new window
---     local tab, pane1, window = mux.spawn_window {}
-
---     -- Pane 1: Top-left
---     pane1:send_text('cd ~/Development/sol-intelligence/sol-backend && sw\n')
-
---     -- Pane 2: Top-right
---     local pane2 = pane1:split{
---         direction = 'Right',
---         size = 0.5
---     }
---     pane2:send_text('cd ~/Development/sol-intelligence/sol-backend && bw\n')
-
---     -- Pane 3: Bottom-left
---     local pane3 = pane1:split{
---         direction = 'Bottom',
---         size = 0.5
---     }
---     pane3:send_text('cd ~/Development/sol-intelligence/sol-scheduling-portal && y dev\n')
-
---     -- Pane 4: Bottom-right
---     local pane4 = pane2:split{
---         direction = 'Bottom',
---         size = 0.5
---     }
---     pane4:send_text('cd ~/Development/sol-intelligence/sol-employee-app && y dev\n')
--- end)
-
 local config = {
-    color_schemes = {
-        ['Catppuccin Mocha'] = scheme
-    },
-    color_scheme = 'Catppuccin Mocha',
     font = wezterm.font("FiraCode Nerd Font Mono"),
     font_size = 13,
-    -- enable_tab_bar = false,
     window_decorations = "RESIZE",
     window_padding = {
         left = '1cell',
@@ -55,8 +13,6 @@ local config = {
         top = '1cell',
         bottom = '1cell'
     },
-    -- window_background_opacity = 0.9,
-    -- macos_window_background_blur = 30,
     use_fancy_tab_bar = false,
     scrollback_lines = 25000,
     enable_scroll_bar = true,
@@ -64,18 +20,24 @@ local config = {
     cursor_blink_rate = 1000,
     default_cursor_style = 'BlinkingBar',
     colors = {
+        foreground = "#CBE0F0",
+        background = "#011423",
+        cursor_bg = "#47FF9C",
+        cursor_border = "#47FF9C",
+        cursor_fg = "#011423",
+        selection_bg = "#033259",
+        selection_fg = "#CBE0F0",
+        ansi = { "#214969", "#E52E2E", "#44FFB1", "#FFE073", "#0FC5ED", "#a277ff", "#24EAF7", "#24EAF7" },
+        brights = { "#214969", "#E52E2E", "#44FFB1", "#FFE073", "#A277FF", "#a277ff", "#24EAF7", "#24EAF7" },
         tab_bar = {
-            -- The color of the tab bar background
-            background = "#1E1E2F", -- Background color for the entire tab bar
-            -- The color of the inactive tabs
+            background = "#001424",
             inactive_tab = {
-                bg_color = "#1e1e2e", -- Background color of inactive tabs
-                fg_color = "#c0caf5" -- Foreground color (text color) of inactive tabs
+                bg_color = "#1e1e2e",
+                fg_color = "#c0caf5"
             },
-            -- The color of the active tab
             active_tab = {
-                bg_color = "#b4befe", -- Background color of the active tab
-                fg_color = "#1e1e2e" -- Foreground color (text color) of the active tab
+                bg_color = "#44FFB1",
+                fg_color = "#214969"
             }
         },
         copy_mode_active_highlight_fg = {
@@ -230,79 +192,75 @@ local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabl
 tabline.setup({
     options = {
         icons_enabled = true,
-        theme = 'Catppuccin Mocha',
         color_overrides = {
-            -- Default colors from Catppuccin Mocha
             normal_mode = {
                 a = {
-                    fg = '#181825',
-                    bg = '#cba6f7'
+                    fg = '#011423',
+                    bg = '#47FF9C'
                 },
                 b = {
-                    fg = '#cba6f7',
-                    bg = '#313244'
+                    fg = '#47FF9C',
+                    bg = '#033259'
                 },
                 c = {
-                    fg = '#cdd6f4',
-                    bg = '#181825'
+                    fg = '#CBE0F0',
+                    bg = '#011423'
                 }
             },
             copy_mode = {
                 a = {
-                    fg = '#181825',
-                    bg = '#f9e2af'
+                    fg = '#011423',
+                    bg = '#FFE073'
                 },
                 b = {
-                    fg = '#f9e2af',
-                    bg = '#313244'
+                    fg = '#FFE073',
+                    bg = '#033259'
                 },
                 c = {
-                    fg = '#cdd6f4',
-                    bg = '#181825'
+                    fg = '#CBE0F0',
+                    bg = '#011423'
                 }
             },
             search_mode = {
                 a = {
-                    fg = '#181825',
-                    bg = '#a6e3a1'
+                    fg = '#011423',
+                    bg = '#44FFB1'
                 },
                 b = {
-                    fg = '#a6e3a1',
-                    bg = '#313244'
+                    fg = '#44FFB1',
+                    bg = '#033259'
                 },
                 c = {
-                    fg = '#cdd6f4',
-                    bg = '#181825'
+                    fg = '#CBE0F0',
+                    bg = '#011423'
                 }
             },
-            -- Defining colors for a new key table
             window_mode = {
                 a = {
-                    fg = '#181825',
-                    bg = '#89b4fa'
+                    fg = '#011423',
+                    bg = '#0FC5ED'
                 },
                 b = {
-                    fg = '#89b4fa',
-                    bg = '#313244'
+                    fg = '#0FC5ED',
+                    bg = '#033259'
                 },
                 c = {
-                    fg = '#cdd6f4',
-                    bg = '#181825'
+                    fg = '#CBE0F0',
+                    bg = '#011423'
                 }
             },
-            -- Default tab colors
             tab = {
                 active = {
-                    fg = '#cba6f7',
-                    bg = '#313244'
+                    fg = '#214969',
+                    bg = '#44FFB1'
                 },
                 inactive = {
-                    fg = '#cdd6f4',
-                    bg = '#181825'
+                    fg = '#44FFB1',
+                    bg = '#214969'
                 },
                 inactive_hover = {
-                    fg = '#e4ceff',
-                    bg = '#313244'
+                    fg = '#CBE0F0',
+                    bg = '#033259'
                 }
             }
         },
@@ -365,7 +323,7 @@ tabline.setup({
     },
     extensions = {}
 })
-tabline.apply_to_config(config)
+-- tabline.apply_to_config(config)
 
 -- CTRL + ALT + P: Toggle presentation mode
 wezterm.plugin.require("https://gitlab.com/xarvex/presentation.wez").apply_to_config(config, {

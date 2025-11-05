@@ -185,29 +185,40 @@
             
             # Zsh configuration
             home.file.".zshrc".source = ./configs/zsh/.zshrc;
+            home.file.".config/nix-darwin/configs/zsh" = {
+              source = ./configs/zsh;
+              recursive = true;
+            };
             
             # Starship configuration
-            home.file.".config/starship.toml".source = ./configs/starship/starship.toml;
+            home.file.".config/starship" = {
+              source = ./configs/starship;
+              recursive = true;
+            };
             
             # Cursor configuration
             home.file."Library/Application Support/Cursor/User/settings.json".source = ./configs/cursor/cursor-settings.json;
             home.file."Library/Application Support/Cursor/User/keybindings.json".source = ./configs/cursor/cursor-keybindings.json;
             home.file.".cursor/mcp.json".source = ./configs/cursor/cursor-mcp.json;
+            home.file.".cursor/cursor.code-profile".source = ./configs/cursor/cursor.code-profile;
 
             # Bat configuration
-            home.file.".config/bat/config".source = ./configs/bat/config;
-            home.file.".config/bat/Catppuccin Mocha.tmTheme".source = ./. + "/configs/bat/themes/Catppuccin Mocha.tmTheme";
-            home.file.".config/bat/themes" = {
-              source = ./configs/bat/themes;
+            home.file.".config/bat" = {
+              source = ./configs/bat;
               recursive = true;
             };
 
             # Git configuration
-            home.file.".config/git/ignore".source = ./configs/git/ignore;
+            home.file.".config/git" = {
+              source = ./configs/git;
+              recursive = true;
+            };
 
             # GitHub CLI configuration
-            home.file.".config/gh/config.yml".source = ./configs/gh/config.yml;
-            home.file.".config/gh/hosts.yml".source = ./configs/gh/hosts.yml;
+            home.file.".config/gh" = {
+              source = ./configs/gh;
+              recursive = true;
+            };
           };
         })
       ];

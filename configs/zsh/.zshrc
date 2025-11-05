@@ -290,15 +290,12 @@ export SDKMAN_DIR="$HOME/.sdkman"
 eval "$(zoxide init --cmd cd zsh)"
 
 alias cd="z"
-
 alias ls="eza --color=always --git --icons=always --octal-permissions --no-permissions --time-style=\"+%b %-d, %Y at %I:%M:%S %p\""
-
 alias cat="bat"
-
 alias tree="tre --color=always --all"
 
-# eza catppuccin theme
-export LS_COLORS="$(vivid generate catppuccin-mocha)"
+# eza tokyo night custom theme
+export LS_COLORS="$(vivid generate /private/etc/nix-darwin/configs/zsh/tokyo-night-custom.yaml)"
 
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
