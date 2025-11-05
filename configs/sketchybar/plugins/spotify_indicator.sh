@@ -4,6 +4,7 @@
 if ! pgrep -x "Spotify" > /dev/null; then
   sketchybar -m --set $NAME drawing=off \
                    label.drawing=off \
+                   icon.drawing=off \
                    label=""
   exit 0
 fi
@@ -14,6 +15,7 @@ STATE=$(osascript -e 'tell application "Spotify" to get player state' 2>/dev/nul
 if [ "$STATE" != "playing" ]; then
   sketchybar -m --set $NAME drawing=off \
                    label.drawing=off \
+                   icon.drawing=off \
                    label=""
   exit 0
 fi
@@ -25,12 +27,15 @@ ALBUM=$(osascript -e 'tell application "Spotify" to get album of current track' 
 
 # Update sketchybar
 sketchybar -m --set $NAME drawing=on \
-                 label.drawing=on
+                 label.drawing=on \
+                 icon.drawing=on
 
-if [ -n "$ARTIST" ]; then
+if [ -n "$ARTIST" ] && [ -n "$ALBUM" ]; then
+  sketchybar -m --set $NAME label="$TRACK - $ARTIST ($ALBUM)"
+elif [ -n "$ARTIST" ]; then
   sketchybar -m --set $NAME label="$TRACK - $ARTIST"
 elif [ -n "$ALBUM" ]; then
-  sketchybar -m --set $NAME label="$TRACK - $ALBUM"
+  sketchybar -m --set $NAME label="$TRACK ($ALBUM)"
 else
   sketchybar -m --set $NAME label="$TRACK"
 fi
