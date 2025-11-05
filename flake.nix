@@ -190,6 +190,9 @@
               recursive = true;
             };
             
+            # FZF configuration
+            home.file.".fzf.zsh".source = ./configs/fzf/.fzf.zsh;
+            
             # Starship configuration
             home.file.".config/starship" = {
               source = ./configs/starship;
