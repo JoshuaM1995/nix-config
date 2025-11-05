@@ -178,7 +178,8 @@
       system.activationScripts.reloadSketchybar.text = ''
         echo "reloading sketchybar..." >&2
         if [ -f /opt/homebrew/bin/sketchybar ]; then
-          sudo -u ${config.system.primaryUser} /opt/homebrew/bin/sketchybar --reload 2>/dev/null || true
+          USER_ID=$(id -u ${config.system.primaryUser})
+          launchctl asuser $USER_ID /opt/homebrew/bin/sketchybar --reload 2>/dev/null || true
         fi
       '';
 
@@ -186,6 +187,14 @@
       system.activationScripts.configureRectangle.text = ''
         echo "configuring Rectangle..." >&2
         sudo -u ${config.system.primaryUser} defaults write com.knollsoft.Rectangle screenEdgeGapTop -int 32 2>/dev/null || true
+        sudo -u ${config.system.primaryUser} defaults write com.knollsoft.Rectangle screenEdgeGapLeft -int 0 2>/dev/null || true
+        sudo -u ${config.system.primaryUser} defaults write com.knollsoft.Rectangle screenEdgeGapRight -int 0 2>/dev/null || true
+        sudo -u ${config.system.primaryUser} defaults write com.knollsoft.Rectangle screenEdgeGapBottom -int 0 2>/dev/null || true
+        if pgrep -x "Rectangle" > /dev/null; then
+          killall Rectangle 2>/dev/null || true
+          sleep 1
+          open -a Rectangle 2>/dev/null || true
+        fi
       '';
 
       # Fix issue with Applications not showing up in MacOS Spotlight
