@@ -32,7 +32,7 @@ sketchybar --bar height=32        \
 
 sketchybar --default icon.font="SF Pro:Regular:13.0"  \
                      icon.color=$WHITE                 \
-                     label.font="Hack Nerd Font:Regular:13.0" \
+                     label.font="SF Pro:Regular:13.0" \
                      label.color=$WHITE                \
                      background.color=$ITEM_BG_COLOR       \
                      background.corner_radius=5            \
