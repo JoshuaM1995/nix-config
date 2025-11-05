@@ -182,6 +182,12 @@
         fi
       '';
 
+      # Configure Rectangle screen edge gap
+      system.activationScripts.configureRectangle.text = ''
+        echo "configuring Rectangle..." >&2
+        sudo -u ${config.system.primaryUser} defaults write com.knollsoft.Rectangle screenEdgeGapTop -int 32 2>/dev/null || true
+      '';
+
       # Fix issue with Applications not showing up in MacOS Spotlight
       system.activationScripts.applications.text = let
         env = pkgs.buildEnv {
