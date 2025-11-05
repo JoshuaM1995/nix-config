@@ -45,6 +45,7 @@
         pnpm
         ripgrep
         carapace
+        jq
       ];
 
       # macOS System Preferences
@@ -106,6 +107,9 @@
           "cleanshot"
           "quit-all"
           "yaak"
+          "font-hack-nerd-font"
+          "font-sf-pro"
+          "sf-symbols"
         ];
         masApps = {
           "ColorSlurp" = 1287239339;
@@ -157,6 +161,25 @@
       system.activationScripts.rebuildBatCache.text = ''
         echo "rebuilding bat cache..." >&2
         ${pkgs.bat}/bin/bat cache --build 2>/dev/null || true
+      '';
+
+      # Install sketchybar-app-font
+      system.activationScripts.installSketchybarAppFont.text = ''
+        echo "installing sketchybar-app-font..." >&2
+        FONT_DIR="/Users/${config.system.primaryUser}/Library/Fonts"
+        FONT_FILE="$FONT_DIR/sketchybar-app-font.ttf"
+        if [ ! -f "$FONT_FILE" ]; then
+          sudo -u ${config.system.primaryUser} mkdir -p "$FONT_DIR"
+          sudo -u ${config.system.primaryUser} ${pkgs.wget}/bin/wget -q -O "$FONT_FILE" https://github.com/kvndrsslr/sketchybar-app-font/releases/download/v1.0.16/sketchybar-app-font.ttf 2>/dev/null || true
+        fi
+      '';
+
+      # Reload sketchybar after darwin-rebuild
+      system.activationScripts.reloadSketchybar.text = ''
+        echo "reloading sketchybar..." >&2
+        if [ -f /opt/homebrew/bin/sketchybar ]; then
+          sudo -u ${config.system.primaryUser} /opt/homebrew/bin/sketchybar --reload 2>/dev/null || true
+        fi
       '';
 
       # Fix issue with Applications not showing up in MacOS Spotlight
