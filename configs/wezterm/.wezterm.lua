@@ -1,9 +1,20 @@
 -- Pull in the wezterm API
 local wezterm = require 'wezterm'
 
+-- This will hold the configuration.
 local act = wezterm.action
 
+-- This is where you actually apply your config choices
+
+-- For example, changing the color scheme:
+-- config.color_scheme = 'Catppuccin Mocha'
+-- local scheme = wezterm.color.get_builtin_schemes()["Catppuccin Mocha"]
+
 local config = {
+    -- color_schemes = {
+    --     ['Catppuccin Mocha'] = scheme
+    -- },
+    -- color_scheme = 'Catppuccin Mocha',
     font = wezterm.font("FiraCode Nerd Font Mono"),
     font_size = 13,
     window_decorations = "RESIZE",
@@ -30,15 +41,25 @@ local config = {
         ansi = { "#214969", "#E52E2E", "#44FFB1", "#FFE073", "#0FC5ED", "#a277ff", "#24EAF7", "#24EAF7" },
         brights = { "#214969", "#E52E2E", "#44FFB1", "#FFE073", "#A277FF", "#a277ff", "#24EAF7", "#24EAF7" },
         tab_bar = {
+            -- The color of the tab bar background
             background = "#001424",
+            -- Background color for the entire tab bar
+            -- background = "#1E1E2F", -- Catppuccin Mocha
+            -- The color of the inactive tabs
             inactive_tab = {
                 bg_color = "#1e1e2e",
                 fg_color = "#c0caf5"
             },
+            -- The color of the active tab
             active_tab = {
                 bg_color = "#44FFB1",
                 fg_color = "#214969"
             }
+            -- Catppuccin Mocha active_tab:
+            -- active_tab = {
+            --     bg_color = "#b4befe", -- Background color of the active tab
+            --     fg_color = "#1e1e2e" -- Foreground color (text color) of the active tab
+            -- }
         },
         copy_mode_active_highlight_fg = {
             Color = '#c0caf5'
@@ -192,7 +213,9 @@ local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabl
 tabline.setup({
     options = {
         icons_enabled = true,
+        -- theme = 'Catppuccin Mocha',
         color_overrides = {
+            -- Default colors from Catppuccin Mocha
             normal_mode = {
                 a = {
                     fg = '#011423',

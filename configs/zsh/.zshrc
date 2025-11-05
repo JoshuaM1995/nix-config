@@ -296,6 +296,8 @@ alias tree="tre --color=always --all"
 
 # eza tokyo night custom theme
 export LS_COLORS="$(vivid generate /private/etc/nix-darwin/configs/zsh/tokyo-night-custom.yaml)"
+# eza catppuccin theme
+# export LS_COLORS="$(vivid generate catppuccin-mocha)"
 
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
