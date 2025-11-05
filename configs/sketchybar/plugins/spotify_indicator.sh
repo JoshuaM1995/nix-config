@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
+# Always show the item
+sketchybar -m --set $NAME drawing=on \
+                 label.drawing=on \
+                 icon.drawing=on
+
 # Check if Spotify is running
 if ! pgrep -x "Spotify" > /dev/null; then
-  sketchybar -m --set $NAME drawing=off \
-                   label.drawing=off \
-                   icon.drawing=off \
-                   label=""
+  sketchybar -m --set $NAME label="No music playing"
   exit 0
 fi
 
@@ -13,10 +15,7 @@ fi
 STATE=$(osascript -e 'tell application "Spotify" to get player state' 2>/dev/null)
 
 if [ "$STATE" != "playing" ]; then
-  sketchybar -m --set $NAME drawing=off \
-                   label.drawing=off \
-                   icon.drawing=off \
-                   label=""
+  sketchybar -m --set $NAME label="No music playing"
   exit 0
 fi
 
@@ -25,11 +24,7 @@ TRACK=$(osascript -e 'tell application "Spotify" to get name of current track' 2
 ARTIST=$(osascript -e 'tell application "Spotify" to get artist of current track' 2>/dev/null | tr -d $'\n\r')
 ALBUM=$(osascript -e 'tell application "Spotify" to get album of current track' 2>/dev/null | tr -d $'\n\r')
 
-# Update sketchybar
-sketchybar -m --set $NAME drawing=on \
-                 label.drawing=on \
-                 icon.drawing=on
-
+# Update label with track information
 if [ -n "$ARTIST" ] && [ -n "$ALBUM" ]; then
   sketchybar -m --set $NAME label="$TRACK - $ARTIST ($ALBUM)"
 elif [ -n "$ARTIST" ]; then

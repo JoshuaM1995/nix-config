@@ -15,6 +15,6 @@ sketchybar -m --add event spotify_change "com.spotify.client.PlaybackStateChange
            --set spotify_indicator label.padding_right=5 \
            --set spotify_indicator update_freq=2 \
            --set spotify_indicator script="$PLUGIN_DIR/spotify_indicator.sh" \
-           --set spotify_indicator click_script="osascript -e 'tell application \"Spotify\" to pause'" \
+           --set spotify_indicator click_script="$PLUGIN_DIR/spotify_click.sh" \
            --subscribe spotify_indicator spotify_change \
            --update spotify_indicator
