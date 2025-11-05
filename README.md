@@ -28,3 +28,7 @@ sudo darwin-rebuild switch
 ## Setting Up Cursor
 
 Import the `cursor.code-profile` file in Cursor by going to **Settings** -> **Profiles** -> **New Profile (Import)** and selecting the file.
+
+## Sketchybar
+
+Change "Automatically hide and show the menu bar" to **Always** in System Settings
