@@ -115,8 +115,8 @@
           "ColorSlurp" = 1287239339;
         };
         onActivation = {
-          autoUpdate = true;
-          upgrade = true;
+          autoUpdate = false;
+          upgrade = false;
           # cleanup = "zap"; # This removes the apps not in the list
         };
       };
