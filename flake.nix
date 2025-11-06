@@ -45,6 +45,7 @@
         pnpm
         ripgrep
         carapace
+        jq
       ];
 
       # macOS System Preferences
@@ -72,12 +73,13 @@
         NSGlobalDomain.InitialKeyRepeat = 25;
         NSGlobalDomain.AppleShowScrollBars = "WhenScrolling";
         NSGlobalDomain.AppleInterfaceStyle = "Dark";
+        NSGlobalDomain._HIHideMenuBar = true;
 
         # Menu Settings
         menuExtraClock.ShowSeconds = true;
 
         # Spaces settings
-        spaces.spans-displays = false;
+        spaces.spans-displays = false; # Displays have separate spaces (false = on, true = off)
       };
 
       # Startup settings
@@ -85,9 +87,13 @@
         chime = false;
       };
 
+
       # Homebrew integration for GUI apps
       homebrew = {
         enable = true;
+        taps = [
+          "FelixKratz/formulae"
+        ];
         casks = [
           "bitwarden"
           "wezterm"
@@ -101,16 +107,33 @@
           "cleanshot"
           "quit-all"
           "yaak"
+          "font-hack-nerd-font"
+          "font-sf-pro"
+          "sf-symbols"
         ];
         masApps = {
           "ColorSlurp" = 1287239339;
         };
         onActivation = {
-          autoUpdate = true;
-          upgrade = true;
+          autoUpdate = false;
+          upgrade = false;
           # cleanup = "zap"; # This removes the apps not in the list
         };
       };
+
+      # Install and start sketchybar service via Homebrew
+      system.activationScripts.startSketchybar.text = ''
+        if [ -f /opt/homebrew/bin/brew ]; then
+          # Tap the repository if not already tapped
+          sudo -u ${config.system.primaryUser} /opt/homebrew/bin/brew tap FelixKratz/formulae 2>/dev/null || true
+          # Install sketchybar if not already installed
+          if ! sudo -u ${config.system.primaryUser} /opt/homebrew/bin/brew list --formula sketchybar &>/dev/null; then
+            sudo -u ${config.system.primaryUser} /opt/homebrew/bin/brew install FelixKratz/formulae/sketchybar 2>/dev/null || true
+          fi
+          # Start the service
+          sudo -u ${config.system.primaryUser} /opt/homebrew/bin/brew services start sketchybar 2>/dev/null || true
+        fi
+      '';
 
       # Shell configuration
       programs.zsh.enable = true;
@@ -138,6 +161,54 @@
       system.activationScripts.rebuildBatCache.text = ''
         echo "rebuilding bat cache..." >&2
         ${pkgs.bat}/bin/bat cache --build 2>/dev/null || true
+      '';
+
+      # Install sketchybar-app-font
+      system.activationScripts.installSketchybarAppFont.text = ''
+        echo "installing sketchybar-app-font..." >&2
+        FONT_DIR="/Users/${config.system.primaryUser}/Library/Fonts"
+        FONT_FILE="$FONT_DIR/sketchybar-app-font.ttf"
+        if [ ! -f "$FONT_FILE" ]; then
+          sudo -u ${config.system.primaryUser} mkdir -p "$FONT_DIR"
+          sudo -u ${config.system.primaryUser} ${pkgs.wget}/bin/wget -q -O "$FONT_FILE" https://github.com/kvndrsslr/sketchybar-app-font/releases/download/v1.0.16/sketchybar-app-font.ttf 2>/dev/null || true
+        fi
+      '';
+
+      # Fix sketchybar script permissions
+      system.activationScripts.fixSketchybarPermissions.text = ''
+        echo "fixing sketchybar script permissions..." >&2
+        SKETCHYBAR_DIR="/Users/${config.system.primaryUser}/.config/sketchybar"
+        if [ -d "$SKETCHYBAR_DIR" ]; then
+          find "$SKETCHYBAR_DIR" -type f -name "*.sh" -exec chmod +x {} \; 2>/dev/null || true
+        fi
+      '';
+
+      # Reload sketchybar after darwin-rebuild
+      system.activationScripts.reloadSketchybar.text = ''
+        echo "reloading sketchybar..." >&2
+        if [ -f /opt/homebrew/bin/sketchybar ]; then
+          USER_ID=$(id -u ${config.system.primaryUser})
+          # Wait a moment for permissions to be set, then reload
+          sleep 1
+          launchctl asuser $USER_ID /opt/homebrew/bin/sketchybar --reload 2>/dev/null || true
+          # Give sketchybar a moment to reload, then trigger updates
+          sleep 2
+          launchctl asuser $USER_ID /opt/homebrew/bin/sketchybar --update spotify_indicator 2>/dev/null || true
+        fi
+      '';
+
+      # Configure Rectangle screen edge gap
+      system.activationScripts.configureRectangle.text = ''
+        echo "configuring Rectangle..." >&2
+        sudo -u ${config.system.primaryUser} defaults write com.knollsoft.Rectangle screenEdgeGapTop -int 32 2>/dev/null || true
+        sudo -u ${config.system.primaryUser} defaults write com.knollsoft.Rectangle screenEdgeGapLeft -int 0 2>/dev/null || true
+        sudo -u ${config.system.primaryUser} defaults write com.knollsoft.Rectangle screenEdgeGapRight -int 0 2>/dev/null || true
+        sudo -u ${config.system.primaryUser} defaults write com.knollsoft.Rectangle screenEdgeGapBottom -int 0 2>/dev/null || true
+        if pgrep -x "Rectangle" > /dev/null; then
+          killall Rectangle 2>/dev/null || true
+          sleep 1
+          open -a Rectangle 2>/dev/null || true
+        fi
       '';
 
       # Fix issue with Applications not showing up in MacOS Spotlight
@@ -185,29 +256,49 @@
             
             # Zsh configuration
             home.file.".zshrc".source = ./configs/zsh/.zshrc;
+            home.file.".config/nix-darwin/configs/zsh" = {
+              source = ./configs/zsh;
+              recursive = true;
+            };
+            
+            # FZF configuration
+            home.file.".fzf.zsh".source = ./configs/fzf/.fzf.zsh;
             
             # Starship configuration
-            home.file.".config/starship.toml".source = ./configs/starship/starship.toml;
+            home.file.".config/starship" = {
+              source = ./configs/starship;
+              recursive = true;
+            };
+            
+            # Sketchybar configuration
+            home.file.".config/sketchybar" = {
+              source = ./configs/sketchybar;
+              recursive = true;
+            };
             
             # Cursor configuration
             home.file."Library/Application Support/Cursor/User/settings.json".source = ./configs/cursor/cursor-settings.json;
             home.file."Library/Application Support/Cursor/User/keybindings.json".source = ./configs/cursor/cursor-keybindings.json;
             home.file.".cursor/mcp.json".source = ./configs/cursor/cursor-mcp.json;
+            home.file.".cursor/cursor.code-profile".source = ./configs/cursor/cursor.code-profile;
 
             # Bat configuration
-            home.file.".config/bat/config".source = ./configs/bat/config;
-            home.file.".config/bat/Catppuccin Mocha.tmTheme".source = ./. + "/configs/bat/themes/Catppuccin Mocha.tmTheme";
-            home.file.".config/bat/themes" = {
-              source = ./configs/bat/themes;
+            home.file.".config/bat" = {
+              source = ./configs/bat;
               recursive = true;
             };
 
             # Git configuration
-            home.file.".config/git/ignore".source = ./configs/git/ignore;
+            home.file.".config/git" = {
+              source = ./configs/git;
+              recursive = true;
+            };
 
             # GitHub CLI configuration
-            home.file.".config/gh/config.yml".source = ./configs/gh/config.yml;
-            home.file.".config/gh/hosts.yml".source = ./configs/gh/hosts.yml;
+            home.file.".config/gh" = {
+              source = ./configs/gh;
+              recursive = true;
+            };
           };
         })
       ];

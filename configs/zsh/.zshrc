@@ -201,7 +201,6 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
-alias start-qzero="cd ~/Development/qzero-monorepo && source .env.josh && p dev"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Carapace
@@ -290,15 +289,24 @@ export SDKMAN_DIR="$HOME/.sdkman"
 eval "$(zoxide init --cmd cd zsh)"
 
 alias cd="z"
-
 alias ls="eza --color=always --git --icons=always --octal-permissions --no-permissions --time-style=\"+%b %-d, %Y at %I:%M:%S %p\""
-
 alias cat="bat"
-
 alias tree="tre --color=always --all"
 
+# eza tokyo night custom theme
+export LS_COLORS="$(vivid generate /private/etc/nix-darwin/configs/zsh/tokyo-night-custom.yaml)"
 # eza catppuccin theme
-export LS_COLORS="$(vivid generate catppuccin-mocha)"
+# export LS_COLORS="$(vivid generate catppuccin-mocha)"
+
+# --- setup fzf theme ---
+fg="#CBE0F0"
+bg="#011628"
+bg_highlight="#143652"
+purple="#B388FF"
+blue="#06BCE4"
+cyan="#2CF9ED"
+
+export FZF_DEFAULT_OPTS="--color=fg:${fg},bg:${bg},hl:${purple},fg+:${fg},bg+:${bg_highlight},hl+:${purple},info:${blue},prompt:${cyan},pointer:${cyan},marker:${cyan},spinner:${cyan},header:${cyan}"
 
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
