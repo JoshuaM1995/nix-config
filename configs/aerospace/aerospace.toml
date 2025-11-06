@@ -57,7 +57,7 @@ inner.horizontal = 8
 inner.vertical =   8
 outer.left =       8
 outer.bottom =     8
-outer.top =        40 # TODO: Change this depending on monitors/built-in laptop screen
+outer.top =        [{ monitor."^built-in retina display$" = 8 }, { monitor.main = 40 }, { monitor.secondary = 40 }, 8]
 outer.right =      8
 
 [workspace-to-monitor-force-assignment]
