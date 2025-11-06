@@ -45,8 +45,8 @@ key-mapping.preset = 'qwerty'
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 on-focus-changed = "move-mouse window-lazy-center"
 
-# Notify Sketchybar about workspace change
-exec-on-workspace-change = ['/bin/bash', '-c', 'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE']
+# Notify Sketchybar about workspace change and set vertical layout for workspace B
+exec-on-workspace-change = ['/bin/bash', '-c', 'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE; if [ "$AEROSPACE_FOCUSED_WORKSPACE" = "B" ]; then aerospace layout vertical; fi']
 
 # Gaps between windows (inner-*) and between monitor edges (outer-*).
 # Possible values:
@@ -65,6 +65,7 @@ outer.left =       8
 
 [workspace-to-monitor-force-assignment]
 2 = 'secondary'
+B = 'secondary'
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -208,7 +209,7 @@ run = "move-node-to-workspace S"
 
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
-run = "move-node-to-workspace T"
+run = "move-node-to-workspace B"
 
 [[on-window-detected]]
 if.app-id = 'net.whatsapp.WhatsApp'
