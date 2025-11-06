@@ -189,16 +189,8 @@ cmd-ctrl-alt-shift-k = ['join-with up', 'mode main']
 cmd-ctrl-alt-shift-l = ['join-with right', 'mode main']
 
 [[on-window-detected]]
-if.app-id = 'com.github.wez.wezterm'
-run = "move-node-to-workspace T"
-
-[[on-window-detected]]
 if.app-id = 'com.brave.Browser'
 run = "move-node-to-workspace B"
-
-[[on-window-detected]]
-if.app-id = 'com.spotify.client'
-run = "move-node-to-workspace S"
 
 [[on-window-detected]]
 if.app-id = 'com.todesktop.230313mzl4w4u92'
@@ -207,3 +199,11 @@ run = "move-node-to-workspace C"
 [[on-window-detected]]
 if.app-id = 'com.mimestream.Mimestream'
 run = "move-node-to-workspace M"
+
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = "move-node-to-workspace S"
+
+[[on-window-detected]]
+if.app-id = 'com.github.wez.wezterm'
+run = "move-node-to-workspace T"
