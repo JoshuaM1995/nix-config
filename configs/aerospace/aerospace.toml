@@ -60,6 +60,9 @@ outer.bottom =     8
 outer.top =        40
 outer.right =      8
 
+[workspace-to-monitor-force-assignment]
+2 = 'secondary'
+
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 # 'main' binding mode must be always presented
@@ -95,11 +98,10 @@ alt-k = 'focus up'
 alt-l = 'focus right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
-cmd-ctrl-alt-shift-h = 'move left'
-cmd-ctrl-alt-shift-j = 'move down'
-cmd-ctrl-alt-shift-k = 'move up'
-cmd-ctrl-alt-shift-l = 'move right'
-
+alt-shift-h = 'move left'
+alt-shift-j = 'move down'
+alt-shift-k = 'move up'
+alt-shift-l = 'move right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 alt-1 = 'workspace 1'
