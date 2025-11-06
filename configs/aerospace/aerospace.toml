@@ -66,6 +66,7 @@ outer.left =       0
 [workspace-to-monitor-force-assignment]
 2 = 'secondary'
 B = 'secondary'
+D = 'secondary'
 M = 'main'
 
 # 'main' binding mode declaration
@@ -120,7 +121,7 @@ alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
 alt-b = 'workspace B' # browser
 alt-c = 'workspace C' # code editor
-alt-d = 'workspace D' # docs
+alt-d = 'workspace D' # database
 alt-e = 'workspace E' # finder
 alt-m = 'workspace M' # mail
 alt-n = 'workspace N' # notes
@@ -221,3 +222,7 @@ run = "move-node-to-workspace M"
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
 run = "move-node-to-workspace N"
+
+[[on-window-detected]]
+if.app-id = 'com.tinyapp.TablePlus-setapp'
+run = "move-node-to-workspace D"
