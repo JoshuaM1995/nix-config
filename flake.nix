@@ -110,6 +110,7 @@
           "font-hack-nerd-font"
           "font-sf-pro"
           "sf-symbols"
+          "nikitabobko/tap/aerospace"
         ];
         masApps = {
           "ColorSlurp" = 1287239339;
@@ -194,6 +195,30 @@
           # Give sketchybar a moment to reload, then trigger updates
           sleep 2
           launchctl asuser $USER_ID /opt/homebrew/bin/sketchybar --update spotify_indicator 2>/dev/null || true
+        fi
+      '';
+
+      # Reload aerospace after darwin-rebuild
+      system.activationScripts.reloadAerospace.text = ''
+        echo "reloading aerospace..." >&2
+        # Wait a moment for config file to be in place
+        sleep 2
+        # Try multiple possible locations for aerospace binary
+        AEROSPACE_BIN=""
+        if [ -f /opt/homebrew/bin/aerospace ]; then
+          AEROSPACE_BIN="/opt/homebrew/bin/aerospace"
+        elif [ -f /Applications/AeroSpace.app/Contents/MacOS/aerospace ]; then
+          AEROSPACE_BIN="/Applications/AeroSpace.app/Contents/MacOS/aerospace"
+        elif command -v aerospace >/dev/null 2>&1; then
+          AEROSPACE_BIN=$(command -v aerospace)
+        fi
+        
+        if [ -n "$AEROSPACE_BIN" ]; then
+          USER_ID=$(id -u ${config.system.primaryUser})
+          # Run reload-config as the user
+          launchctl asuser $USER_ID "$AEROSPACE_BIN" reload-config 2>&1 || true
+        else
+          echo "aerospace binary not found, skipping reload" >&2
         fi
       '';
 
@@ -299,6 +324,9 @@
               source = ./configs/gh;
               recursive = true;
             };
+
+            # Aerospace Configuration
+            home.file.".aerospace.toml".source = ./configs/aerospace/aerospace.toml;
           };
         })
       ];
