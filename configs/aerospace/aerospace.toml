@@ -56,12 +56,12 @@ exec-on-workspace-change = ['/bin/bash', '-c', 'sketchybar --trigger aerospace_w
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 #                 See: 
 [gaps]
-inner.horizontal = 8
-inner.vertical =   8
-outer.top =        [{ monitor."^built-in retina display$" = 8 }, { monitor.main = 40 }, { monitor.secondary = 40 }, 8]
-outer.bottom =     8
-outer.right =      8
-outer.left =       8
+inner.horizontal = 0
+inner.vertical =   0
+outer.top =        [{ monitor."^built-in retina display$" = 0 }, { monitor.main = 32 }, { monitor.secondary = 32 }, 0]
+outer.bottom =     0
+outer.right =      0
+outer.left =       0
 
 [workspace-to-monitor-force-assignment]
 2 = 'secondary'
