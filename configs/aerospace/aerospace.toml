@@ -139,6 +139,7 @@ alt-shift-7 = 'move-node-to-workspace 7'
 alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
 alt-shift-b = 'move-node-to-workspace B'
+alt-shift-c = 'move-node-to-workspace C'
 alt-shift-d = 'move-node-to-workspace D'
 alt-shift-e = 'move-node-to-workspace E'
 alt-shift-m = 'move-node-to-workspace M'
@@ -149,17 +150,17 @@ alt-shift-t = 'move-node-to-workspace T'
 alt-shift-v = 'move-node-to-workspace V'
 alt-shift-w = 'move-node-to-workspace W'
 
-cmd-ctrl-alt-shift-f = 'fullscreen'
+alt-shift-f = 'fullscreen'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
-cmd-ctrl-alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
-cmd-ctrl-alt-shift-semicolon = 'mode service'
+alt-shift-semicolon = 'mode service'
 
-cmd-ctrl-alt-shift-r = 'mode resize'
+alt-shift-r = 'mode resize'
 
 [mode.resize.binding]
 h = 'resize width -50'
@@ -184,11 +185,10 @@ r = ['flatten-workspace-tree', 'mode main'] # reset layout
 #s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
 f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
 backspace = ['close-all-windows-but-current', 'mode main']
-
-cmd-ctrl-alt-shift-h = ['join-with left', 'mode main']
-cmd-ctrl-alt-shift-j = ['join-with down', 'mode main']
-cmd-ctrl-alt-shift-k = ['join-with up', 'mode main']
-cmd-ctrl-alt-shift-l = ['join-with right', 'mode main']
+alt-shift-h = ['join-with left', 'mode main']
+alt-shift-j = ['join-with down', 'mode main']
+alt-shift-k = ['join-with up', 'mode main']
+alt-shift-l = ['join-with right', 'mode main']
 
 [[on-window-detected]]
 if.app-id = 'com.brave.Browser'
