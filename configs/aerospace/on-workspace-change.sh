@@ -3,7 +3,7 @@
 sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE
 
 if [ "$AEROSPACE_FOCUSED_WORKSPACE" = "B" ]; then
-    aerospace layout tiles vertical
+    aerospace layout accordion vertical
     sleep 0.1
 elif [ "$AEROSPACE_FOCUSED_WORKSPACE" = "M" ]; then
     aerospace layout tiles horizontal
