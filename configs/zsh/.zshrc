@@ -79,6 +79,9 @@ alias copilot="gh copilot"
 alias gcs="gh copilot suggest"
 alias gce="gh copilot explain"
 
+# Nix Darwin
+alias darwin-rebuild-switch="darwin-rebuild switch && aerospace reload-config && sketchybar --reload"
+
 # alias slint-create="cargo generate --git https://github.com/slint-ui/slint-rust-template --name my-project"
 function slintcreate() {
   cargo generate --git https://github.com/slint-ui/slint-rust-template --name $1
