@@ -235,14 +235,35 @@
             home.homeDirectory = lib.mkForce "/Users/joshuamcnabb";
             home.stateVersion = "25.05";
             
-            # Zsh configuration
-            programs.zsh.enable = false;
+            # Zsh configuration with oh-my-zsh
+            programs.zsh = {
+              enable = true;
+              enableCompletion = true;
+              autosuggestion.enable = true;
+              syntaxHighlighting.enable = true;
+              
+              oh-my-zsh = {
+                enable = true;
+                plugins = [
+                  "git"
+                  "docker"
+                  "kubectl"
+                  "dotenv"
+                  "last-working-dir"
+                  "yarn"
+                ];
+              };
+              
+              initExtra = ''
+                # Source custom zsh configurations (aliases, functions, etc.)
+                if [ -f ~/.config/nix-darwin/configs/zsh/.zshrc ]; then
+                  source ~/.config/nix-darwin/configs/zsh/.zshrc
+                fi
+              '';
+            };
             
             # WezTerm configuration
             home.file.".wezterm.lua".source = ./configs/wezterm/.wezterm.lua;
-            
-            # Zsh configuration
-            home.file.".zshrc".source = ./configs/zsh/.zshrc;
             home.file.".config/nix-darwin/configs/zsh" = {
               source = ./configs/zsh;
               recursive = true;
