@@ -18,5 +18,6 @@
     "titleBar.inactiveBackground": "#5274be99",
     "titleBar.inactiveForeground": "#e7e7e799"
   },
-  "peacock.color": "#5274BE"
+  "peacock.color": "#5274BE",
+  "cSpell.words": ["sketchybar"]
 }
