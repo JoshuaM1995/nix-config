@@ -184,44 +184,6 @@
         fi
       '';
 
-      # Reload sketchybar after darwin-rebuild
-      system.activationScripts.reloadSketchybar.text = ''
-        echo "reloading sketchybar..." >&2
-        if [ -f /opt/homebrew/bin/sketchybar ]; then
-          USER_ID=$(id -u ${config.system.primaryUser})
-          # Wait a moment for permissions to be set, then reload
-          sleep 1
-          launchctl asuser $USER_ID /opt/homebrew/bin/sketchybar --reload 2>/dev/null || true
-          # Give sketchybar a moment to reload, then trigger updates
-          sleep 2
-          launchctl asuser $USER_ID /opt/homebrew/bin/sketchybar --update spotify_indicator 2>/dev/null || true
-        fi
-      '';
-
-      # Reload aerospace after darwin-rebuild
-      system.activationScripts.reloadAerospace.text = ''
-        echo "reloading aerospace..." >&2
-        # Wait a moment for config file to be in place
-        sleep 2
-        # Try multiple possible locations for aerospace binary
-        AEROSPACE_BIN=""
-        if [ -f /opt/homebrew/bin/aerospace ]; then
-          AEROSPACE_BIN="/opt/homebrew/bin/aerospace"
-        elif [ -f /Applications/AeroSpace.app/Contents/MacOS/aerospace ]; then
-          AEROSPACE_BIN="/Applications/AeroSpace.app/Contents/MacOS/aerospace"
-        elif command -v aerospace >/dev/null 2>&1; then
-          AEROSPACE_BIN=$(command -v aerospace)
-        fi
-        
-        if [ -n "$AEROSPACE_BIN" ]; then
-          USER_ID=$(id -u ${config.system.primaryUser})
-          # Run reload-config as the user
-          launchctl asuser $USER_ID "$AEROSPACE_BIN" reload-config 2>&1 || true
-        else
-          echo "aerospace binary not found, skipping reload" >&2
-        fi
-      '';
-
       # Configure Rectangle screen edge gap
       system.activationScripts.configureRectangle.text = ''
         echo "configuring Rectangle..." >&2
