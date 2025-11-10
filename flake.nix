@@ -132,7 +132,7 @@
             sudo -u ${config.system.primaryUser} /opt/homebrew/bin/brew install FelixKratz/formulae/sketchybar 2>/dev/null || true
           fi
           # Start the service
-          sudo -u ${config.system.primaryUser} /opt/homebrew/bin/brew services start sketchybar 2>/dev/null || true
+          # sudo -u ${config.system.primaryUser} /opt/homebrew/bin/brew services start sketchybar 2>/dev/null || true
         fi
       '';
 
