@@ -17,11 +17,10 @@ plugins=(
   kubectl
   dotenv
   last-working-dir
-  zsh-autosuggestions
+  # zsh-autosuggestions
   yarn
-  zsh-z
-  zsh-completions
-  zsh-npm-scripts-autocomplete
+  # zsh-completions
+  # zsh-npm-scripts-autocomplete
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -32,6 +31,8 @@ source $ZSH/oh-my-zsh.sh
         https://github.com/marlonrichert/zsh-snap.git ~/zsh-plugins/znap
 
 source ~/zsh-plugins/znap/znap.zsh  # Start Znap
+
+znap source marlonrichert/zsh-autocomplete
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -78,6 +79,9 @@ alias sa="yarn app-config secret agent"
 alias copilot="gh copilot"
 alias gcs="gh copilot suggest"
 alias gce="gh copilot explain"
+
+# Nix Darwin
+alias darwin-rebuild-switch="darwin-rebuild switch && aerospace reload-config && sketchybar --reload"
 
 # alias slint-create="cargo generate --git https://github.com/slint-ui/slint-rust-template --name my-project"
 function slintcreate() {
@@ -203,10 +207,10 @@ load-nvmrc
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Carapace
-export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
-zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
-source <(carapace _carapace)
+# Carapace (disabled - conflicts with directory completion)
+# export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
+# zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+# source <(carapace _carapace)
 
 # Starship (p10k replacement)
 eval "$(starship init zsh)"
@@ -280,15 +284,10 @@ decrypt_and_unzip() {
   return 0
 }
 
-export PATH=$PATH:~/Library/Android/sdk/build-tools/36.0.0-rc1
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
+# Initialize zoxide (must be after compinit from oh-my-zsh)
+# --cmd cd replaces 'cd' directly with proper completions
+# This creates 'cd' and 'cdi' commands
 eval "$(zoxide init --cmd cd zsh)"
-
-alias cd="z"
 alias ls="eza --color=always --git --icons=always --octal-permissions --no-permissions --time-style=\"+%b %-d, %Y at %I:%M:%S %p\""
 alias cat="bat"
 alias tree="tre --color=always --all"
@@ -314,25 +313,26 @@ export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git
 export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 
-_fzf_comprun() {
-  local command=$1
-  shift
-
-  case "$command" in
-  cd) fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
-  export | unset) fzf --preview "eval 'echo $'{}" "$@" ;;
-  ssh) fzf --preview 'dig {}' "$@" ;;
-  *) fzf --preview "bat -n --color=always --line-range :500 {}" "$@" ;;
-  esac
-}
-
-_fzf_compgen_path() {
-  fd --hidden --exclude .git . "$1"
-}
-
-_fzf_compgen_dir() {
-  fd --type=d --hidden --exclude .git . "$1"
-}
+# Disabled fzf tab completion - use Ctrl+T and Alt+C instead
+# _fzf_comprun() {
+#   local command=$1
+#   shift
+#
+#   case "$command" in
+#   cd) fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
+#   export | unset) fzf --preview "eval 'echo $'{}" "$@" ;;
+#   ssh) fzf --preview 'dig {}' "$@" ;;
+#   *) fzf --preview "bat -n --color=always --line-range :500 {}" "$@" ;;
+#   esac
+# }
+#
+# _fzf_compgen_path() {
+#   fd --hidden --exclude .git . "$1"
+# }
+#
+# _fzf_compgen_dir() {
+#   fd --type=d --hidden --exclude .git . "$1"
+# }
 
 # Doesn't work well with wezterm keybindings
 # source ~/fzf-git.sh/fzf-git.zsh

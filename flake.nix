@@ -110,6 +110,7 @@
           "font-hack-nerd-font"
           "font-sf-pro"
           "sf-symbols"
+          "nikitabobko/tap/aerospace"
         ];
         masApps = {
           "ColorSlurp" = 1287239339;
@@ -131,7 +132,7 @@
             sudo -u ${config.system.primaryUser} /opt/homebrew/bin/brew install FelixKratz/formulae/sketchybar 2>/dev/null || true
           fi
           # Start the service
-          sudo -u ${config.system.primaryUser} /opt/homebrew/bin/brew services start sketchybar 2>/dev/null || true
+          # sudo -u ${config.system.primaryUser} /opt/homebrew/bin/brew services start sketchybar 2>/dev/null || true
         fi
       '';
 
@@ -180,20 +181,6 @@
         SKETCHYBAR_DIR="/Users/${config.system.primaryUser}/.config/sketchybar"
         if [ -d "$SKETCHYBAR_DIR" ]; then
           find "$SKETCHYBAR_DIR" -type f -name "*.sh" -exec chmod +x {} \; 2>/dev/null || true
-        fi
-      '';
-
-      # Reload sketchybar after darwin-rebuild
-      system.activationScripts.reloadSketchybar.text = ''
-        echo "reloading sketchybar..." >&2
-        if [ -f /opt/homebrew/bin/sketchybar ]; then
-          USER_ID=$(id -u ${config.system.primaryUser})
-          # Wait a moment for permissions to be set, then reload
-          sleep 1
-          launchctl asuser $USER_ID /opt/homebrew/bin/sketchybar --reload 2>/dev/null || true
-          # Give sketchybar a moment to reload, then trigger updates
-          sleep 2
-          launchctl asuser $USER_ID /opt/homebrew/bin/sketchybar --update spotify_indicator 2>/dev/null || true
         fi
       '';
 
@@ -248,14 +235,35 @@
             home.homeDirectory = lib.mkForce "/Users/joshuamcnabb";
             home.stateVersion = "25.05";
             
-            # Zsh configuration
-            programs.zsh.enable = false;
+            # Zsh configuration with oh-my-zsh
+            programs.zsh = {
+              enable = true;
+              enableCompletion = true;
+              autosuggestion.enable = true;
+              syntaxHighlighting.enable = true;
+              
+              oh-my-zsh = {
+                enable = true;
+                plugins = [
+                  "git"
+                  "docker"
+                  "kubectl"
+                  "dotenv"
+                  "last-working-dir"
+                  "yarn"
+                ];
+              };
+              
+              initExtra = ''
+                # Source custom zsh configurations (aliases, functions, etc.)
+                if [ -f ~/.config/nix-darwin/configs/zsh/.zshrc ]; then
+                  source ~/.config/nix-darwin/configs/zsh/.zshrc
+                fi
+              '';
+            };
             
             # WezTerm configuration
             home.file.".wezterm.lua".source = ./configs/wezterm/.wezterm.lua;
-            
-            # Zsh configuration
-            home.file.".zshrc".source = ./configs/zsh/.zshrc;
             home.file.".config/nix-darwin/configs/zsh" = {
               source = ./configs/zsh;
               recursive = true;
@@ -299,6 +307,9 @@
               source = ./configs/gh;
               recursive = true;
             };
+
+            # Aerospace Configuration
+            home.file.".aerospace.toml".source = ./configs/aerospace/aerospace.toml;
           };
         })
       ];
