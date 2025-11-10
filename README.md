@@ -15,7 +15,7 @@ sudo nix run nix-darwin/nix-darwin-25.05#darwin-rebuild -- switch
 ### Afterwards
 
 ```bash
-sudo darwin-rebuild switch
+sudo darwin-rebuild switch && aerospace reload-config
 ```
 
 ### Updating Managed Apps/Packages
