@@ -129,7 +129,7 @@ alt-n = 'workspace N' # notes
 alt-p = 'workspace P' # photo editing
 alt-s = 'workspace S' # spotify
 alt-t = 'workspace T' # terminal
-alt-v = 'workspace V' # video editing
+alt-v = 'workspace V'
 alt-w = 'workspace W' 
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
@@ -219,7 +219,7 @@ run = "move-node-to-workspace S"
 
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
-run = "move-node-to-workspace B"
+run = "move-node-to-workspace T"
 
 [[on-window-detected]]
 if.app-id = 'net.whatsapp.WhatsApp'
