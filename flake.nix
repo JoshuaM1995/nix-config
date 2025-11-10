@@ -123,18 +123,18 @@
       };
 
       # Install and start sketchybar service via Homebrew
-      system.activationScripts.startSketchybar.text = ''
-        if [ -f /opt/homebrew/bin/brew ]; then
-          # Tap the repository if not already tapped
-          sudo -u ${config.system.primaryUser} /opt/homebrew/bin/brew tap FelixKratz/formulae 2>/dev/null || true
-          # Install sketchybar if not already installed
-          if ! sudo -u ${config.system.primaryUser} /opt/homebrew/bin/brew list --formula sketchybar &>/dev/null; then
-            sudo -u ${config.system.primaryUser} /opt/homebrew/bin/brew install FelixKratz/formulae/sketchybar 2>/dev/null || true
-          fi
-          # Start the service
-          # sudo -u ${config.system.primaryUser} /opt/homebrew/bin/brew services start sketchybar 2>/dev/null || true
-        fi
-      '';
+      # system.activationScripts.startSketchybar.text = ''
+      #   if [ -f /opt/homebrew/bin/brew ]; then
+      #     # Tap the repository if not already tapped
+      #     sudo -u ${config.system.primaryUser} /opt/homebrew/bin/brew tap FelixKratz/formulae 2>/dev/null || true
+      #     # Install sketchybar if not already installed
+      #     if ! sudo -u ${config.system.primaryUser} /opt/homebrew/bin/brew list --formula sketchybar &>/dev/null; then
+      #       sudo -u ${config.system.primaryUser} /opt/homebrew/bin/brew install FelixKratz/formulae/sketchybar 2>/dev/null || true
+      #     fi
+      #     # Start the service
+      #     sudo -u ${config.system.primaryUser} /opt/homebrew/bin/brew services start sketchybar 2>/dev/null || true
+      #   fi
+      # '';
 
       # Shell configuration
       programs.zsh.enable = true;
@@ -165,24 +165,24 @@
       '';
 
       # Install sketchybar-app-font
-      system.activationScripts.installSketchybarAppFont.text = ''
-        echo "installing sketchybar-app-font..." >&2
-        FONT_DIR="/Users/${config.system.primaryUser}/Library/Fonts"
-        FONT_FILE="$FONT_DIR/sketchybar-app-font.ttf"
-        if [ ! -f "$FONT_FILE" ]; then
-          sudo -u ${config.system.primaryUser} mkdir -p "$FONT_DIR"
-          sudo -u ${config.system.primaryUser} ${pkgs.wget}/bin/wget -q -O "$FONT_FILE" https://github.com/kvndrsslr/sketchybar-app-font/releases/download/v1.0.16/sketchybar-app-font.ttf 2>/dev/null || true
-        fi
-      '';
+      # system.activationScripts.installSketchybarAppFont.text = ''
+      #   echo "installing sketchybar-app-font..." >&2
+      #   FONT_DIR="/Users/${config.system.primaryUser}/Library/Fonts"
+      #   FONT_FILE="$FONT_DIR/sketchybar-app-font.ttf"
+      #   if [ ! -f "$FONT_FILE" ]; then
+      #     sudo -u ${config.system.primaryUser} mkdir -p "$FONT_DIR"
+      #     sudo -u ${config.system.primaryUser} ${pkgs.wget}/bin/wget -q -O "$FONT_FILE" https://github.com/kvndrsslr/sketchybar-app-font/releases/download/v1.0.16/sketchybar-app-font.ttf 2>/dev/null || true
+      #   fi
+      # '';
 
-      # Fix sketchybar script permissions
-      system.activationScripts.fixSketchybarPermissions.text = ''
-        echo "fixing sketchybar script permissions..." >&2
-        SKETCHYBAR_DIR="/Users/${config.system.primaryUser}/.config/sketchybar"
-        if [ -d "$SKETCHYBAR_DIR" ]; then
-          find "$SKETCHYBAR_DIR" -type f -name "*.sh" -exec chmod +x {} \; 2>/dev/null || true
-        fi
-      '';
+      # # Fix sketchybar script permissions
+      # system.activationScripts.fixSketchybarPermissions.text = ''
+      #   echo "fixing sketchybar script permissions..." >&2
+      #   SKETCHYBAR_DIR="/Users/${config.system.primaryUser}/.config/sketchybar"
+      #   if [ -d "$SKETCHYBAR_DIR" ]; then
+      #     find "$SKETCHYBAR_DIR" -type f -name "*.sh" -exec chmod +x {} \; 2>/dev/null || true
+      #   fi
+      # '';
 
       # Configure Rectangle screen edge gap
       system.activationScripts.configureRectangle.text = ''
@@ -279,10 +279,10 @@
             };
             
             # Sketchybar configuration
-            home.file.".config/sketchybar" = {
-              source = ./configs/sketchybar;
-              recursive = true;
-            };
+            # home.file.".config/sketchybar" = {
+            #   source = ./configs/sketchybar;
+            #   recursive = true;
+            # };
             
             # Cursor configuration
             home.file."Library/Application Support/Cursor/User/settings.json".source = ./configs/cursor/cursor-settings.json;
