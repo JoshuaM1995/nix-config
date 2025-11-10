@@ -46,6 +46,7 @@
         ripgrep
         carapace
         jq
+        jankyborders
       ];
 
       # macOS System Preferences
