@@ -119,17 +119,18 @@ alt-6 = 'workspace 6'
 alt-7 = 'workspace 7'
 alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
+alt-a = 'workspace A' # ai
 alt-b = 'workspace B' # browser
 alt-c = 'workspace C' # code editor
 alt-d = 'workspace D' # database
 alt-e = 'workspace E' # finder
-alt-m = 'workspace M' # mail
+alt-m = 'workspace M' # messaging
 alt-n = 'workspace N' # notes
 alt-p = 'workspace P' # photo editing
 alt-s = 'workspace S' # spotify
 alt-t = 'workspace T' # terminal
 alt-v = 'workspace V' # video editing
-alt-w = 'workspace W' # whatsapp
+alt-w = 'workspace W' 
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1'
@@ -141,6 +142,7 @@ alt-shift-6 = 'move-node-to-workspace 6'
 alt-shift-7 = 'move-node-to-workspace 7'
 alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
+alt-shift-a = 'move-node-to-workspace A'
 alt-shift-b = 'move-node-to-workspace B'
 alt-shift-c = 'move-node-to-workspace C'
 alt-shift-d = 'move-node-to-workspace D'
@@ -194,6 +196,10 @@ alt-shift-h = ['join-with left', 'mode main']
 alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
+
+[[on-window-detected]]
+if.app-id = 'com.anthropic.claudefordesktop'
+run = "move-node-to-workspace A"
 
 [[on-window-detected]]
 if.app-id = 'com.brave.Browser'
